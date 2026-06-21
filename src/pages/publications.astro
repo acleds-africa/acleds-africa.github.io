@@ -1,0 +1,280 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const publications = [
+  {
+    type: "Working Paper",
+    title: "Mathematics Confidence and Achievement: A Longitudinal Perspective",
+    authors: ["Grace Amackson"],
+    year: 2025,
+    abstract:
+      "This paper examines the co-evolution of mathematics confidence and measurable achievement across the primary school years, using longitudinal data from Ghanaian school cohorts. Findings suggest that confidence diverges from achievement in patterned ways that have implications for early intervention.",
+    status: "Under review",
+    tag: "tag-gold",
+  },
+  {
+    type: "Research Brief",
+    title:
+      "Applying Learning Analytics in Under-Resourced School Contexts: Opportunities and Constraints",
+    authors: ["ACLEDS Research Team"],
+    year: 2025,
+    abstract:
+      "A methodological review of the challenges and opportunities facing learning analytics practitioners working in African schools with limited digital infrastructure, inconsistent data recording, and resource-constrained environments.",
+    status: "Published",
+    tag: "",
+  },
+  {
+    type: "Conceptual Paper",
+    title:
+      "Educational Data Science for African School Systems: Possibilities and Constraints",
+    authors: ["ACLEDS"],
+    year: 2024,
+    abstract:
+      "This conceptual paper maps the terrain of educational data science as it might apply to African educational contexts, identifying areas of promise and highlighting the structural constraints — data, infrastructure, capacity — that must be addressed.",
+    status: "Published",
+    tag: "",
+  },
+];
+---
+
+<BaseLayout
+  title="Publications — ACLEDS"
+  description="ACLEDS research publications, working papers, and reports"
+>
+  <section class="page-hero section-dark">
+    <div class="container">
+      <p class="eyebrow">Scholarship</p>
+      <h1>Publications</h1>
+      <p class="page-hero-sub">
+        Working papers, research briefs, and journal articles from the ACLEDS
+        research programme.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="pub-layout">
+        <aside class="pub-sidebar">
+          <div class="filter-group">
+            <p class="eyebrow" style="margin-bottom:0.75rem">Filter by Type</p>
+            <ul class="filter-list">
+              <li>
+                <button class="filter-btn active" data-filter="all"
+                  >All Publications</button>
+              </li>
+              <li>
+                <button class="filter-btn" data-filter="journal"
+                  >Journal Articles</button>
+              </li>
+              <li>
+                <button class="filter-btn" data-filter="working"
+                  >Working Papers</button>
+              </li>
+              <li>
+                <button class="filter-btn" data-filter="brief"
+                  >Research Briefs</button>
+              </li>
+              <li>
+                <button class="filter-btn" data-filter="report">Reports</button>
+              </li>
+            </ul>
+          </div>
+        </aside>
+        <div class="pub-main">
+          <p class="pub-count">
+            {publications.length} publication{
+              publications.length !== 1 ? "s" : ""
+            }
+          </p>
+          <div class="pub-full-list">
+            {
+              publications.map((pub) => (
+                <article class="pub-article">
+                  <div class="pub-header">
+                    <span class={`tag ${pub.tag}`}>{pub.type}</span>
+                    <span class="pub-year">{pub.year}</span>
+                  </div>
+                  <h3>{pub.title}</h3>
+                  <p class="pub-authors">{pub.authors.join(", ")}</p>
+                  <p class="pub-abstract">{pub.abstract}</p>
+                  <div class="pub-footer">
+                    <span
+                      class={`status-dot ${pub.status === "Published" ? "green" : "amber"}`}
+                    />
+                    <span class="status-label">{pub.status}</span>
+                  </div>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 6rem 0 5rem;
+  }
+  .page-hero h1 {
+    color: var(--white);
+    margin: 0.75rem 0 1.25rem;
+  }
+  .page-hero-sub {
+    color: rgba(232, 237, 244, 0.7);
+    font-size: 1.1rem;
+    max-width: 58ch;
+    line-height: 1.8;
+  }
+
+  .pub-layout {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 3.5rem;
+    align-items: start;
+  }
+
+  .pub-sidebar {
+    position: sticky;
+    top: calc(var(--nav-h) + 2rem);
+  }
+
+  .filter-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .filter-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 0.55rem 0.85rem;
+    font-size: 0.875rem;
+    font-family: var(--font-body);
+    background: none;
+    border: none;
+    border-radius: var(--radius);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition:
+      background var(--transition),
+      color var(--transition);
+  }
+
+  .filter-btn:hover {
+    background: var(--fog);
+    color: var(--text);
+  }
+  .filter-btn.active {
+    background: var(--fog);
+    color: var(--navy);
+    font-weight: 600;
+  }
+
+  .pub-count {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .pub-full-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .pub-article {
+    padding: 2rem;
+    background: var(--true-white);
+    border: 1px solid rgba(74, 96, 128, 0.1);
+    border-radius: var(--radius-md);
+    transition:
+      border-color var(--transition),
+      box-shadow var(--transition);
+  }
+
+  .pub-article:hover {
+    border-color: rgba(200, 151, 58, 0.25);
+    box-shadow: 0 4px 20px rgba(11, 31, 58, 0.06);
+  }
+
+  .pub-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.85rem;
+  }
+
+  .pub-year {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+
+  .pub-article h3 {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: 0.35rem;
+  }
+
+  .pub-authors {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .pub-abstract {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+  }
+
+  .pub-footer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+  .status-dot.green {
+    background: #22c55e;
+  }
+  .status-dot.amber {
+    background: var(--gold);
+  }
+
+  .status-label {
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  @media (max-width: 768px) {
+    .pub-layout {
+      grid-template-columns: 1fr;
+    }
+    .pub-sidebar {
+      position: static;
+    }
+    .filter-list {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+</style>
