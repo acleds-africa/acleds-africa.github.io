@@ -9,8 +9,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "postbuild": "node scripts/postbuild.mjs"
+    "astro": "astro"
   },
   "dependencies": {
     "@astrojs/mdx": "^6.0.3",
