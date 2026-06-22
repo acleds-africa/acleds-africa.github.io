@@ -1,6 +1,6 @@
 ---
-import '../styles/global.css';
-import '../styles/custom-global.css';
+import "../styles/global.css";
+import "../styles/custom-global.css";
 
 export interface Props {
   title?: string;
@@ -31,13 +31,15 @@ const {
     <header class="site-header">
       <nav class="nav-inner">
         <a href="/" class="nav-logo">
-          <span class="logo-mark">AC</span>
+          <img
+            src="/src/assets/logo-icon.svg"
+            alt="ACLEDS logo"
+            class="nav-logo-img"
+            width="44"
+            height="44"
+          />
           <span class="logo-text">
             <strong>ACLEDS</strong>
-            <small
-              >African Centre for Learning Analytics<br />& Educational Data
-              Science</small
-            >
           </span>
         </a>
 
@@ -69,13 +71,10 @@ const {
     <footer class="site-footer">
       <div class="footer-inner">
         <div class="footer-brand">
-          <span class="logo-mark">AC</span>
+          <img src="/src/assets/logo-icon.svg" alt="ACLEDS" class="footer-logo-img" width="48" height="48" />
           <div>
             <strong>ACLEDS</strong>
-            <p>
-              African Centre for Learning Analytics<br />& Educational Data
-              Science
-            </p>
+            <p>African Centre for Learning Analytics<br />& Educational Data Science</p>
           </div>
         </div>
 
